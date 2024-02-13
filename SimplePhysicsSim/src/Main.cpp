@@ -110,7 +110,7 @@ int main(int argc, char** argv)
 		std::system("cls");
 		std::cout << "" << std::endl;
 		std::cout << " Frame Time: " << frameTime << "ms" << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(16 - frameTime));
+		std::this_thread::sleep_for(std::chrono::milliseconds(16 - std::min(frameTime,16)));
     }
 	return 0;
 }
