@@ -106,11 +106,11 @@ int main(int argc, char** argv)
 
 		//Prints frame time to console and forces frame rate
 		auto stop = std::chrono::high_resolution_clock::now(); 
-		frameTime = (std::chrono::duration_cast<std::chrono::milliseconds>(stop - start)).count(); 
+		frameTime = (std::chrono::duration_cast<std::chrono::microseconds>(stop - start)).count(); 
 		std::system("cls");
 		std::cout << "" << std::endl;
-		std::cout << " Frame Time: " << frameTime << "ms" << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(16 - std::min(frameTime,16)));
+		std::cout << " Frame Time: " << round(frameTime/1000) << "ms" << std::endl;
+		std::this_thread::sleep_for(std::chrono::microseconds(16667 - std::min(frameTime,16667)));
     }
 	return 0;
 }
