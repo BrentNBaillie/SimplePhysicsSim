@@ -7,7 +7,7 @@
 enum NormalTangent { Xn, Yn, Xt, Yt };
 
 Physics::Physics()
-	:xGravity(0), yGravity(70), collCoefficient(0.9), step(0.01),
+	:xGravity(0), yGravity(70), collCoefficient(0.98), step(0.01),
 	distance(0), dragCoefficient(0.05), dX(0), dY(0), Unit{ 0 }, Vel{ 0 },
 	BallOneVel{ 0 }, BallTwoVel{ 0 }, ballOneFacing(false), ballTwoFacing(false),
 	maxVel(2), Overlap{ 0 }, addVel(0), addVelFactor{0}, velScale(8)
@@ -102,8 +102,10 @@ void Physics::BallCollide(Ball &ballOne, Ball &ballTwo, float dist, float deltaX
 		if (+ballOne.Vx > maxVel && +ballOne.Vy > maxVel && +ballTwo.Vx > maxVel && +ballTwo.Vy > maxVel)
 		{
 			//Forced displacement
-			ballTwo.x = 2.01 * ballRadius * Unit[Xn] + ballOne.x;
-			ballTwo.y = 2.01 * ballRadius * Unit[Yn] + ballOne.y;
+			ballOne.x -= ballRadius * Unit[Xn];
+			ballOne.y -= ballRadius * Unit[Yn]; 
+			ballTwo.x += ballRadius * Unit[Xn]; 
+			ballTwo.y += ballRadius * Unit[Yn]; 
 		}
 		else
 		{
